@@ -1,0 +1,22 @@
+<p>contact-list works!</p>
+<input type="checkbox" [(ngModel)]="showEmail" /> Email
+<input type="checkbox" [(ngModel)]="showDep" /> departement
+
+<table>
+  <tr>
+    <td>First Name</td>
+    <td>Last Name</td>
+    <td>Gender</td>
+    <td *ngIf="showEmail">Email</td>
+    <td *ngIf="showDep">Departement</td>
+  </tr>
+  <tr *ngFor="let contact of contacts">
+    <td>{{ contact.firstname }}</td>
+    <td>{{ contact.lastname }}</td>
+    <td>{{ contact.gender }}</td>
+    <td *ngIf="showEmail">{{ contact.email }}</td>
+    <td *ngIf="showDep">{{ contact.departments }}</td>
+    <button (click)="onEdit(contact._id)">Modifier</button>
+    <button (click)="onDelete(contact._id)">Supprimer</button>
+  </tr>
+</table>

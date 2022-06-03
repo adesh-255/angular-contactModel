@@ -1,0 +1,139 @@
+<form [formGroup]="contactForm">
+  <div>
+    Firstname <input type="text" formControlName="firstname" />
+    <p
+      *ngIf="
+        contactControl['firstname'].touched &&
+        contactControl['firstname'].errors &&
+        contactControl['firstname'].errors['required']
+      "
+      [ngStyle]="{ color: 'red' }"
+    >
+      FirstName required
+    </p>
+    <p
+      *ngIf="
+        contactControl['firstname'].errors &&
+        contactControl['firstname'].errors['maxlength']
+      "
+      [ngStyle]="{ color: 'red' }"
+    >
+      Maxium required is 30 characters
+    </p>
+  </div>
+  <div>
+    lastname <input type="text" formControlName="lastname" />
+    <p
+      *ngIf="
+        contactControl['lastname'].touched &&
+        contactControl['lastname'].errors &&
+        contactControl['lastname'].errors['required']
+      "
+      [ngStyle]="{ color: 'red' }"
+    >
+      lastName required
+    </p>
+    <p
+      *ngIf="
+        contactControl['lastname'].errors &&
+        contactControl['lastname'].errors['maxlength']
+      "
+      [ngStyle]="{ color: 'red' }"
+    >
+      Maxium required is 30 characters
+    </p>
+  </div>
+  <div>
+    Male <input type="radio" value="M" formControlName="gender" /> Female
+    <input type="radio" value="F" formControlName="gender" />
+    <p
+      *ngIf="
+        contactControl['gender'].errors &&
+        contactControl['gender'].errors['required']
+      "
+      [ngStyle]="{ color: 'red' }"
+    >
+      Gender is required
+    </p>
+  </div>
+  <div>
+    Phone Number <input type="text" formControlName="phoneNumber" />
+    <p
+      *ngIf="
+        contactControl['phoneNumber'].dirty &&
+        contactControl['phoneNumber'].errors &&
+        contactControl['phoneNumber'].errors['required']
+      "
+      [ngStyle]="{ color: 'red' }"
+    >
+      phoneNumber required
+    </p>
+    <p
+      *ngIf="
+        contactControl['phoneNumber'].errors &&
+        contactControl['phoneNumber'].errors['maxlength']
+      "
+      [ngStyle]="{ color: 'red' }"
+    >
+      Maxium required is 30 characters
+    </p>
+  </div>
+  <div>
+    Email <input type="text" formControlName="email" />
+    <p
+      *ngIf="
+        contactControl['email'].dirty &&
+        contactControl['email'].errors &&
+        contactControl['email'].errors['required']
+      "
+      [ngStyle]="{ color: 'red' }"
+    >
+      Email required
+    </p>
+    <p
+      *ngIf="
+        contactControl['email'].errors &&
+        contactControl['email'].errors['email']
+      "
+      [ngStyle]="{ color: 'red' }"
+    >
+      it's must be an Email required
+    </p>
+  </div>
+  <div>
+    BirthDate <input type="text" formControlName="birthDate" />
+    <p
+      *ngIf="
+        contactControl['birthDate'].dirty &&
+        contactControl['birthDate'].errors &&
+        contactControl['birthDate'].errors['required']
+      "
+      [ngStyle]="{ color: 'red' }"
+    >
+      birthDate required
+    </p>
+    <p
+      *ngIf="
+        contactControl['birthDate'].errors &&
+        contactControl['birthDate'].errors['pattern(/^\d{4}-\d{2}-\d{2}$/)']
+      "
+      [ngStyle]="{ color: 'red' }"
+    >
+      format : YYYY-mm-dd
+    </p>
+  </div>
+  <div>
+    <span> Departement</span>
+    <select formControlName="departments" id="">
+      <option
+        *ngFor="let department of departmentsList"
+        [value]="department.code"
+      >
+        {{ department.label }}
+      </option>
+    </select>
+  </div>
+
+  <button (click)="onSubmit()" [disabled]="contactForm.invalid">Submit</button>
+  <button (click)="onSubmit()" [disabled]="contactForm.invalid">Cancel</button>
+</form>
